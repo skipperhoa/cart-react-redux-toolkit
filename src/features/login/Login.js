@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import callApi from '../../api';
 import { useNavigate } from "react-router-dom";
 import { useDispatch,useSelector } from 'react-redux';
-import { ENDPOINT } from '../../contains';
+import { ENDPOINT } from '../../constains';
 import { login, selectLogin } from './loginSlice';
 const Login= ()=>{
   let navigate = useNavigate();

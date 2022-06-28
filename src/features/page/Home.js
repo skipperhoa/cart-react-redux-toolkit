@@ -1,7 +1,7 @@
 import React, { useState , useEffect} from 'react'
 import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom';
-import { ENDPOINT } from '../../contains';
+import { ENDPOINT } from '../../constains';
 const Home = () => {
   const {token,userId,success} = useSelector(state=>state.login);
   const [id,setId] = useState(userId);
