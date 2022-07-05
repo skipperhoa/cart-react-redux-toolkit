@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
 import { Routes, Route, Link, Navigate } from "react-router-dom";
@@ -6,12 +6,13 @@ import './App.css';
 import Login from './features/login/Login';
 import Home from './features/page/Home';
 import Cart from './features/cart/Cart'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RequireAuth } from './features/login/RequireAuth';
 import Products from './features/page/Products';
 function App() {
   const {success} = useSelector(state=>state.login)
   const {carts} = useSelector(state=>state.carts);
+ 
   return (
     <div className='w-full'>
         <div className='w-full bg-gray-600 py-2'>
@@ -30,6 +31,8 @@ function App() {
               </div>
             </div>
         </div>
+      
+        
       <Routes>
           <Route path="/" element={success?<Home />:<Login />} />
           <Route path="home" element={

@@ -13,14 +13,26 @@ export const loginSlice = createSlice({
   reducers: {
      login:(state,action)=>{
         const {success,data} = action.payload
-        state.token = data.token
-        state.userId = data.user
-        state.success = success
+        return{
+          ...state,
+          token: data.token,
+          userId: data.user,
+          success: success
+        }
      },
+     updateLoginRTK:(state,action)=>{
+      const {success,data} = action.payload
+      return{
+        ...state,
+        token: data.token,
+        userId: data.user,
+        success: success
+      }
+   },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { login } = loginSlice.actions
+export const { login,updateLoginRTK } = loginSlice.actions
 export const selectLogin = (state) => state.login;
 export default loginSlice.reducer

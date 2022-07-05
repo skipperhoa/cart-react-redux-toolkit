@@ -1,32 +1,23 @@
 import React,{useState,useEffect} from 'react'
 import { useDispatch,useSelector } from 'react-redux'
 import callApi from '../../api';
+import { useGetProductsQuery } from '../../services';
 import { addCart, selectCarts } from '../cart/cartSlice';
 const Products = () => {
   const dispatch = useDispatch();
   const {products} = useSelector((state) => state.carts)
-  console.log(useSelector((state)=>selectCarts(state)));
+  //console.log(useSelector((state)=>selectCarts(state)));
   const [items,setItems] = useState([]);
+  const {data,isLoading} = useGetProductsQuery();
   useEffect(() => {
-    let mounted = true;
-    const getItems = async()=>{
-        const data = await fetch(`http://127.0.0.1:8000/api/products`).then(res=>res.json())
-        .then(result=>{
-            if(mounted){
-                console.log(result)
-                setItems(JSON.parse(result.data));
-                
-            }
-        })
-    }
-    getItems();
-    return () => {
-        mounted = false;
-    }
-  }, [])
+    if(!isLoading && data){
+        let result = data;
+        setItems(JSON.parse(result.data));  
+    }  
+  }, [isLoading])
 
   const add_cart = (item)=>{
-    console.log(item)
+   // console.log(item)
     dispatch(addCart(item));
   }
   

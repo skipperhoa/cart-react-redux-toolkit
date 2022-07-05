@@ -6,9 +6,13 @@ import App from './App';
 import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
 import './index.css';
+import { saveState } from './app/browser-storage';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
+store.subscribe(() => {
+  saveState(store.getState());
+});
 
 root.render(
   <React.StrictMode>
